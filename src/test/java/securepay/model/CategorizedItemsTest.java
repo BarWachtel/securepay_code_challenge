@@ -21,7 +21,7 @@ class CategorizedItemsTest {
     @Test
     void fromJson() {
         CategorizedItems categorizedItems = CategorizedItems.fromJson(
-                this.getClass().getResourceAsStream("fromjson_categorized_items_test.json"));
+                this.getClass().getResourceAsStream("/fromjson_categorized_items_test.json"));
         Map<Integer, List<Item>> categorizedItemsMap = categorizedItems.getCategorizedItemsMap();
         Assertions.assertEquals(2, categorizedItemsMap.size());
         List<Item> items = categorizedItemsMap.get(1);
