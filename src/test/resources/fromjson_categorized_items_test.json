@@ -1,0 +1,36 @@
+{
+  "categorizedItems": {
+    "1": [
+      {
+        "itemNumber": 1,
+        "categoryNumber": 1,
+        "price": 20,
+        "shippingCost": 3,
+        "rating": 2
+      },
+      {
+        "itemNumber": 1,
+        "categoryNumber": 2,
+        "price": 13,
+        "shippingCost": 4,
+        "rating": 5
+      }
+    ],
+    "2": [
+      {
+        "itemNumber": 2,
+        "categoryNumber": 1,
+        "price": 10,
+        "shippingCost": 5,
+        "rating": 5
+      },
+      {
+        "itemNumber": 2,
+        "categoryNumber": 2,
+        "price": 17,
+        "shippingCost": 4,
+        "rating": 2
+      }
+    ]
+  }
+}

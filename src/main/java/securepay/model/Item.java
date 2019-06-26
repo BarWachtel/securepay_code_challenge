@@ -32,4 +32,24 @@ public class Item {
                 NumberGenerator.inRange(MAX_SHIPPING_COST, MIN_SHIPPING_COST),
                 NumberGenerator.inRange(MAX_RATING, MIN_RATING));
     }
+
+    public int getItemNumber() {
+        return itemNumber;
+    }
+
+    public int getCategoryNumber() {
+        return categoryNumber;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getShippingCost() {
+        return shippingCost;
+    }
+
+    public int getRating() {
+        return rating;
+    }
 }

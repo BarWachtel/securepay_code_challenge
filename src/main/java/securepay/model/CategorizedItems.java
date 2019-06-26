@@ -1,5 +1,6 @@
 package securepay.model;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,7 @@ public class CategorizedItems {
         this.categorizedItems = new HashMap<>();
     }
 
-    public Map<Integer, List<Item>> getCategorizedItems() {
+    public Map<Integer, List<Item>> getCategorizedItemsMap() {
         return categorizedItems;
     }
 
@@ -30,6 +31,10 @@ public class CategorizedItems {
             categorizedItems.addCategory(categoryNum, items);
         }
         return categorizedItems;
+    }
+
+    public static CategorizedItems fromJson(InputStream jsonFileInputStream) {
+        return null;
     }
 
     private void addCategory(int categoryNum, List<Item> items) {
