@@ -7,9 +7,7 @@ import securepay.model.SelectedItems;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Optional;
 
 
 public class SelectItems {
@@ -21,24 +19,27 @@ public class SelectItems {
                 if (categoryNumber == 0 || currMaxCost == 0) {
                     dp[categoryNumber][currMaxCost] = new DpCell(0);
                 } else {
-                    int finalCost = currMaxCost;
-                    int finalCat = categoryNumber;
-                    List<Item> collect = categorizedItems.getCategory(categoryNumber)
-                            .stream().filter(item -> item.getTotalPrice() <= finalCost)
-                            .collect(Collectors.toList());
+                    // Best practice for passing primitives to streams
+                    final int finalCost = currMaxCost;
+                    final int finalCat = categoryNumber;
 
-                    DpCell newDpCell = dp[categoryNumber - 1][currMaxCost];
-                    if (collect.size() > 0) {
-                        Item max = collect.stream()
-                                .max(Comparator.comparingInt(x ->
-                                        x.getRating() + dp[finalCat - 1][finalCost - x.getTotalPrice()].rating))
-                                .get();
-                        if (max.getRating() + dp[categoryNumber - 1][currMaxCost - max.getTotalPrice()].rating > dp[categoryNumber - 1][currMaxCost].rating) {
-                            newDpCell = new DpCell(max, dp[categoryNumber - 1][currMaxCost - max.getTotalPrice()]);
+                    final Optional<Item> optionalMax = categorizedItems.getCategory(categoryNumber)
+                            .stream()
+                            .filter(item -> item.getTotalPrice() <= finalCost)
+                            .max(Comparator.comparingInt(x ->
+                                    x.getRating() + dp[finalCat - 1][finalCost - x.getTotalPrice()].rating));
+
+                    DpCell maxDpCell = dp[categoryNumber - 1][currMaxCost];
+                    if (optionalMax.isPresent()) {
+                        Item max = optionalMax.get();
+                        DpCell newDpCell = new DpCell(max, dp[categoryNumber - 1][currMaxCost - max.getTotalPrice()]);
+
+                        if (newDpCell.rating > maxDpCell.rating) {
+                            maxDpCell = newDpCell;
                         }
                     }
 
-                    dp[categoryNumber][currMaxCost] = newDpCell;
+                    dp[categoryNumber][currMaxCost] = maxDpCell;
                 }
             }
 
