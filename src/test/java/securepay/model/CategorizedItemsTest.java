@@ -19,8 +19,10 @@ class CategorizedItemsTest {
         CategorizedItems categorizedItems = CategorizedItems.generate(catItemsConfig);
         Assertions.assertEquals(catItemsConfig.getNumCategories(),
                 categorizedItems.getCategorizedItemsMap().size());
-        Assertions.assertEquals(catItemsConfig.getNumItems(),
-                categorizedItems.getCategorizedItemsMap().get(1).size());
+        List<Item> items = categorizedItems.getCategorizedItemsMap().get(1);
+        Assertions.assertEquals(catItemsConfig.getNumItems(), items.size());
+        Assertions.assertEquals(4, items.get(0).getTotalPrice());
+        Assertions.assertEquals(2, items.get(0).getRating());
     }
 
     @Test

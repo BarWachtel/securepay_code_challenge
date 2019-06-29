@@ -2,11 +2,11 @@
   "numCategories": 20,
   "numItems": 10,
   "itemConfig": {
-    "maxPrice": 20,
+    "maxPrice": 1,
     "minPrice": 1,
-    "maxShippingCost": 5,
-    "minShippingCost": 2,
-    "maxRating": 5,
-    "minRating": 1
+    "maxShippingCost": 3,
+    "minShippingCost": 3,
+    "maxRating": 2,
+    "minRating": 2
   }
 }

@@ -44,4 +44,8 @@ public class Item {
     public int getRating() {
         return rating;
     }
+
+    public int getTotalPrice() {
+        return getPrice() + getShippingCost();
+    }
 }
