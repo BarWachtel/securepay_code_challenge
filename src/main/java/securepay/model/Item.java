@@ -10,7 +10,7 @@ public class Item {
     private final int shippingCost;
     private final int rating;
 
-    private Item(int itemNumber, int categoryNumber, int price, int shippingCost, int rating) {
+    public Item(int itemNumber, int categoryNumber, int price, int shippingCost, int rating) {
         this.itemNumber = itemNumber;
         this.categoryNumber = categoryNumber;
         this.price = price;

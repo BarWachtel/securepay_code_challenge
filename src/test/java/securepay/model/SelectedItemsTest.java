@@ -3,21 +3,18 @@ package securepay.model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import securepay.model.gsonloader.GsonLoader;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class SelectedItemsTest {
     private static List<Item> selectedItems;
 
     @BeforeAll
     static void loadItemList() {
-        selectedItems = GsonLoader.fromJson(
-                SelectedItemsTest.class.getResourceAsStream("/selecteditemstest/selected_items.json"),
-                new ArrayList<Item>().getClass());
+        selectedItems = Arrays.asList(
+                new Item(1, 3, 3, 2, 5),
+                new Item(2, 2, 1, 2, 4));
     }
 
     @Test
