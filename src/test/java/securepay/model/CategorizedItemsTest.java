@@ -3,6 +3,8 @@ package securepay.model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import securepay.model.config.CategorizedItemsConfig;
+import securepay.model.gsonloader.GsonLoader;
 
 import java.util.List;
 import java.util.Map;
@@ -11,17 +13,21 @@ class CategorizedItemsTest {
 
     @Test
     void generate() {
-        CategorizedItems categorizedItems = CategorizedItems.generate();
-        Assertions.assertEquals(CategorizedItems.NUM_CATEGORIES,
+        CategorizedItemsConfig catItemsConfig = GsonLoader.fromJson(
+                this.getClass().getResourceAsStream("/categorizeditemtest/cat_item_config.json"),
+                CategorizedItemsConfig.class);
+        CategorizedItems categorizedItems = CategorizedItems.generate(catItemsConfig);
+        Assertions.assertEquals(catItemsConfig.getNumCategories(),
                 categorizedItems.getCategorizedItemsMap().size());
-        Assertions.assertEquals(CategorizedItems.NUM_ITEMS_PER_CATEGORY,
+        Assertions.assertEquals(catItemsConfig.getNumItems(),
                 categorizedItems.getCategorizedItemsMap().get(1).size());
     }
 
     @Test
     void fromJson() {
-        CategorizedItems categorizedItems = CategorizedItems.fromJson(
-                this.getClass().getResourceAsStream("/fromjson_categorized_items_test.json"));
+        CategorizedItems categorizedItems = GsonLoader.fromJson(
+                this.getClass().getResourceAsStream("/categorizeditemtest/fromjson.json"),
+                CategorizedItems.class);
         Map<Integer, List<Item>> categorizedItemsMap = categorizedItems.getCategorizedItemsMap();
         Assertions.assertEquals(2, categorizedItemsMap.size());
         List<Item> items = categorizedItemsMap.get(1);

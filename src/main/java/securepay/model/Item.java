@@ -1,17 +1,9 @@
 package securepay.model;
 
 import securepay.generator.NumberGenerator;
+import securepay.model.config.ItemConfig;
 
 public class Item {
-    private static final int MAX_PRICE = 20;
-    private static final int MIN_PRICE = 1;
-
-    private static final int MAX_SHIPPING_COST = 5;
-    private static final int MIN_SHIPPING_COST = 2;
-
-    private static final int MAX_RATING = 5;
-    private static final int MIN_RATING = 1;
-
     private final int itemNumber;
     private final int categoryNumber;
     private final int price;
@@ -26,11 +18,11 @@ public class Item {
         this.rating = rating;
     }
 
-    public static Item generate(int itemNumber, int categoryNumber) {
+    public static Item generate(int itemNumber, int categoryNumber, ItemConfig itemConfig) {
         return new Item(itemNumber, categoryNumber,
-                NumberGenerator.inRange(MAX_PRICE, MIN_PRICE),
-                NumberGenerator.inRange(MAX_SHIPPING_COST, MIN_SHIPPING_COST),
-                NumberGenerator.inRange(MAX_RATING, MIN_RATING));
+                NumberGenerator.inRange(itemConfig.getMaxPrice(), itemConfig.getMinPrice()),
+                NumberGenerator.inRange(itemConfig.getMaxShippingCost(), itemConfig.getMinShippingCost()),
+                NumberGenerator.inRange(itemConfig.getMaxRating(), itemConfig.getMinRating()));
     }
 
     public int getItemNumber() {

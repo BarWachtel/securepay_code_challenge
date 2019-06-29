@@ -1,0 +1,12 @@
+{
+  "numCategories": 20,
+  "numItems": 10,
+  "itemConfig": {
+    "maxPrice": 20,
+    "minPrice": 1,
+    "maxShippingCost": 5,
+    "minShippingCost": 2,
+    "maxRating": 5,
+    "minRating": 1
+  }
+}
