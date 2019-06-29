@@ -9,8 +9,8 @@
         "rating": 4
       },
       {
-        "itemNumber": 1,
-        "categoryNumber": 2,
+        "itemNumber": 2,
+        "categoryNumber": 1,
         "price": 1,
         "shippingCost": 2,
         "rating": 3
@@ -18,8 +18,8 @@
     ],
     "2": [
       {
-        "itemNumber": 2,
-        "categoryNumber": 1,
+        "itemNumber": 1,
+        "categoryNumber": 2,
         "price": 3,
         "shippingCost": 2,
         "rating": 5

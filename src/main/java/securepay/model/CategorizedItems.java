@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import securepay.model.config.CategorizedItemsConfig;
 import securepay.model.config.ItemConfig;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,5 +37,13 @@ public class CategorizedItems {
 
     private void addCategory(int categoryNum, List<Item> items) {
         this.categorizedItems.put(categoryNum, items);
+    }
+
+    public int numCategories() {
+        return this.categorizedItems.size();
+    }
+
+    public List<Item> getCategory(int categoryNumber) {
+        return this.categorizedItems.get(categoryNumber);
     }
 }

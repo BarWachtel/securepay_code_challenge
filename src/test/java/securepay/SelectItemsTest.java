@@ -31,7 +31,7 @@ class SelectItemsTest {
         Assertions.assertNotNull(selectedItems);
         Assertions.assertEquals(3, selectedItems.numSelectedItems());
         Assertions.assertEquals(6, selectedItems.totalRating());
-        Assertions.assertEquals(5, selectedItems.totalCost());
+        Assertions.assertEquals(6, selectedItems.totalCost());
         Assertions.assertEquals("Category2:Item1,Category3:Item1,Category4:Item1",
                 selectedItems.selectedItemsID());
     }
