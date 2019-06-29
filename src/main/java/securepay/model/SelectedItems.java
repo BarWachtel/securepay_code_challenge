@@ -1,6 +1,12 @@
 package securepay.model;
 
+import java.util.List;
+
 public class SelectedItems {
+    public SelectedItems(List<Item> selectedItems) {
+
+    }
+
     public int numSelectedItems() {
         return 0;
     }
