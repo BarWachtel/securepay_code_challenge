@@ -1,6 +1,5 @@
 package securepay.model;
 
-import com.google.gson.Gson;
 import securepay.model.config.CategorizedItemsConfig;
 import securepay.model.config.ItemConfig;
 

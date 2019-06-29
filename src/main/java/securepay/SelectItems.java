@@ -3,7 +3,13 @@ package securepay;
 import securepay.model.CategorizedItems;
 import securepay.model.Item;
 import securepay.model.SelectedItems;
+import securepay.model.config.CategorizedItemsConfig;
+import securepay.model.gsonloader.GsonLoader;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -11,6 +17,39 @@ import java.util.Optional;
 
 
 public class SelectItems {
+    public static void main(String[] args) {
+        InputStream inputStream = null;
+        if (args.length > 0) {
+            try {
+                inputStream = new FileInputStream(new File(args[0]));
+            } catch (FileNotFoundException e) {
+                System.err.println("Input parameter should be a full path to Categorized Items config json");
+                System.err.println("Received: " + args[0]);
+                System.exit(1);
+            }
+        } else {
+            inputStream = SelectItems.class.getResourceAsStream("/default_cat_item_config.json");
+        }
+
+        CategorizedItemsConfig categorizedItemsConfig = GsonLoader.fromJson(
+                inputStream,
+                CategorizedItemsConfig.class
+        );
+        CategorizedItems categorizedItems = CategorizedItems.generate(categorizedItemsConfig);
+
+        SelectedItems selectedItems = selectItems(categorizedItems, categorizedItemsConfig.getMaxCost());
+
+        System.out.println("Item coordinates:");
+        System.out.println(selectedItems.selectedItemsID());
+        System.out.println();
+
+        System.out.println("Total rating: " + selectedItems.totalRating());
+        System.out.println();
+
+        System.out.println("Total cost: " + selectedItems.totalCost());
+        System.out.println();
+    }
+
     public static SelectedItems selectItems(CategorizedItems categorizedItems, int maxCost) {
         DpCell[][] dp = new DpCell[categorizedItems.numCategories() + 1][maxCost + 1];
 

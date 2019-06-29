@@ -5,6 +5,7 @@ import java.io.InputStream;
 public class CategorizedItemsConfig {
     private int numCategories;
     private int numItems;
+    private int maxCost;
     private ItemConfig itemConfig;
 
     private CategorizedItemsConfig() {}
@@ -23,5 +24,9 @@ public class CategorizedItemsConfig {
 
     public static CategorizedItemsConfig fromJsonFile(InputStream fileStream) {
         return null;
+    }
+
+    public int getMaxCost() {
+        return maxCost;
     }
 }

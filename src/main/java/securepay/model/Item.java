@@ -18,7 +18,7 @@ public class Item {
         this.rating = rating;
     }
 
-    public static Item generate(int itemNumber, int categoryNumber, ItemConfig itemConfig) {
+    public static Item generate(int categoryNumber, int itemNumber, ItemConfig itemConfig) {
         return new Item(itemNumber, categoryNumber,
                 NumberGenerator.inRange(itemConfig.getMaxPrice(), itemConfig.getMinPrice()),
                 NumberGenerator.inRange(itemConfig.getMaxShippingCost(), itemConfig.getMinShippingCost()),
